@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+  <section class="search-and-user">
+    <form>
+      <input type="search" placeholder="Search Pages...">
+      <button type="submit" aria-label="submit form">
+        <svg aria-hidden="true">
+          <use xlink:href="#search"></use>
+        </svg>
+      </button>
+    </form>
+    <div class="admin-profile">
+      <span class="greeting"> Hello {{username}}!</span>
+      <div class="notifications">
+        <span class="badge">1</span>
+        <svg>
+          <use xlink:href="#users"></use>
+        </svg>
+      </div>
+    </div>
+  </section>
+  <section class="grid">
+    <article>
+      <table id="students">
+        {% for student in students %}
+          <tr>
+            <th>
+              {{ student }}
+            </th>
+          </tr>
+        {% endfor %}
+      </table><br>
+      <a href={{url_for('addstudent')}}>Add New Student</a>
+    </article>
+    <article>Grid 2</article>
+    <article>Grid 3</article>
+    <article>Grid 4</article>
+    <article>Grid 5</article>
+    <article>Grid 6</article>
+    <article>Grid 7</article>
+    <article>Grid 8</article>
+  </section>
+  <footer class="page-footer">
+    <span>made by </span>
+    <a href="https://georgemartsoukos.com/" target="_blank">
+      <img width="24" height="24" src="https://assets.codepen.io/162656/george-martsoukos-small-logo.svg" alt="George Martsoukos logo">
+    </a>
+  </footer>
+{% endblock %}

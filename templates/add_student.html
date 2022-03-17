@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content%}
+
+    <h1>Add New Student</h1>
+    <form method="POST">
+        <input type="text" id="name" name="name">
+        <input type="submit" id="submit">
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}
