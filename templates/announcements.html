@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content%}
+
+
+      <table id="announcements">
+        <h2 class="table-header">Announcements</h2>
+          <tr>
+              <th width="20%">Date</th>
+              <th width="50%">Title</th>
+              <th width="30%">Sender</th>
+          </tr>
+
+        {% for announcement in announcements %}
+        <tr>
+<!--            TODO parse date to human readable format-->
+                <td class="tbl date" width="20%">{{announcement['date']}}</td>
+                <td class="tbl title" width="50%">
+                    <a onclick="popUpWindow('{{url_for('view_announcement', announcement_id=announcement['_id'])}}','Example','700','600');" href="javascript:void(0);">{{announcement['title']}}</a>
+                </td>
+                <td class="tbl sender" width="30%">{{announcement['sender']}}</td>
+            </tr>
+        {% endfor %}
+
+      </table>
+
+{% endblock %}

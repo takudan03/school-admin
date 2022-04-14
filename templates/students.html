@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <section class="search-and-user">
+    <form>
+      <input type="search" placeholder="Search...">
+      <button type="submit" aria-label="submit form">
+        <svg aria-hidden="true">
+          <use xlink:href="#search"></use>
+        </svg>
+      </button>
+    </form>
+  </section>
+
+  <table id="students">
+    <h2 class="table-header">Students ({{student_count}})</h2>
+      <tr>
+          <th width="20%">Student ID</th>
+          <th width="70%">Full Name</th>
+          <th width="10%">Options</th>
+      </tr>
+
+    {% for student in students %}
+    <tr>
+            <td class="tbl id" width="20%">{{student['_id']}}</td>
+            <td class="tbl name" width="70%">{{student['firstname'] + " "+ student['lastname']}}</td>
+            <td class="tbl options" width="10%">
+                <a href="{{url_for('view_student',student_id=student['_id'])}}"> view</a>
+                <a href="#">edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+  </table>
+    <br>
+  <a href={{url_for('addstudent')}} class="add-button">Add New Student</a>
+{% endblock %}

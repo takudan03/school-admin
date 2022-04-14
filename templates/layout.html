@@ -1,9 +1,6 @@
 <html>
-
-
     <head>
         <title>{{t}}</title>
-        <!-- href="/static/assets/style.css"-->
         <link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
     </head>
 <body>
@@ -91,94 +88,89 @@
 </svg>
 <header class="page-header">
   <nav>
-    <a href="#0" aria-label="forecastr logo" class="logo">
-      <img width="140" height="49" src="/static/images/logo.png">
+    <a href={{url_for('dashboard')}} aria-label="forecastr logo" class="logo">
+      <img width="140" height="49" src="/static/images/logo.png" >
         <use xlink:href="#logo"></use>
       </img>
     </a>
-    <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+    <button class="toggle-mob-menu" height="49" aria-expanded="false" aria-label="open menu">
       <svg width="20" height="20" aria-hidden="true">
         <use xlink:href="#down"></use>
       </svg>
     </button>
+    <div class="responsive-user-details">
+          <h3>{{user.role}} - {{user.id}}</h3>
+    </div>
     <ul class="admin-menu">
-      <li class="menu-heading">
-        <h2>{{username}}</h2>
-        <h3>{{role}}</h3>
+      <li class="menu-heading user-details">
+        <h3>{{user.role}} - {{user.id}} </h3>
       </li>
       <li>
-        <a href="#0">
+        <a href={{url_for('students')}}>
           <svg>
             <use xlink:href="#pages"></use>
           </svg>
-          <span>Pages</span>
+          <span>Students</span>
         </a>
       </li>
       <li>
-        <a href="#0">
+        <a href={{url_for('teachers')}}>
           <svg>
             <use xlink:href="#users"></use>
           </svg>
-          <span>Users</span>
+          <span>Teachers</span>
         </a>
       </li>
       <li>
-        <a href="#0">
+        <a href={{url_for('subjects')}}>
           <svg>
             <use xlink:href="#trends"></use>
           </svg>
-          <span>Trends</span>
+          <span>Subjects</span>
         </a>
       </li>
       <li>
-        <a href="#0">
+        <a href={{url_for('view_announcements')}}>
           <svg>
             <use xlink:href="#collection"></use>
           </svg>
-          <span>Collection</span>
+          <span>Announcements</span>
         </a>
       </li>
+
+
       <li>
         <a href="#0">
           <svg>
             <use xlink:href="#comments"></use>
           </svg>
-          <span>Comments</span>
+          <span>Profile</span>
         </a>
       </li>
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#appearance"></use>
-          </svg>
-          <span>Appearance</span>
-        </a>
-      </li>
+<!--      <li>-->
+<!--        <a href="#0">-->
+<!--          <svg>-->
+<!--            <use xlink:href="#appearance"></use>-->
+<!--          </svg>-->
+<!--          <span>Appearance</span>-->
+<!--        </a>-->
+<!--      </li>-->
+
+
+
+
+
       <li class="menu-heading">
-        <h3>Settings</h3>
+        <h3>Miscellaneous</h3>
       </li>
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#settings"></use>
-          </svg>
-          <span>Settings</span>
-        </a>
-      </li>
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#options"></use>
-          </svg>
-          <span>Options</span>
-        </a>
-      </li>
+
       <li>
         <a href="#0">
           <svg>
             <use xlink:href="#charts"></use>
           </svg>
-          <span>Charts</span>
+<!--          TODO: insert number of logged in users-->
+          <span>Users Logged in: </span>
         </a>
       </li>
       <li>
@@ -198,6 +190,7 @@
       </li>
     </ul>
   </nav>
+
 </header>
 <div class="page">
 <section class="page-content">
@@ -206,6 +199,7 @@
   {% endblock %}
 </section>
 </div>
+
 <script src="{{ url_for('static',filename='assets/index.js')}}"></script>
 
 </body>

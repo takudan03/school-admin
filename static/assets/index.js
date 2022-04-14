@@ -63,3 +63,22 @@ switchInput.addEventListener("input", function () {
     localStorage.setItem("dark-mode", "true");
   }
 });
+
+
+const tiles = document.querySelectorAll('article');
+
+tiles.forEach((tile) => {
+  tile.addEventListener('click', () => {
+    tiles.forEach((tile) => {
+      tile.classList.remove("active");
+    });
+    tile.classList.add("active");
+  })
+});
+
+function popUpWindow(URL, windowName, windowWidth, windowHeight) {
+    var centerLeft = (screen.width/2)-(windowWidth/2);
+    var centerTop = (screen.height/2)-(windowHeight/2);
+    var windowFeatures = 'toolbar=no, location=no, directories=no, status=no, menubar=no, titlebar=no, scrollbars=no, resizable=no, ';
+    return window.open(URL, windowName, windowFeatures +' width='+ windowWidth +', height='+ windowHeight +', top='+ centerTop +', left='+ centerLeft);
+}

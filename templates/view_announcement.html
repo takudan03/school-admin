@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{t}}</title>
+</head>
+<body>
+    <div class="announcement-header">
+        From: <b>{{ann['sender'] }}</b>
+        Date: <b>{{parsed_date}} </b> <br>
+        Title: <b>{{ann['title']}} </b>
+    </div>
+
+    <div class="announcement-body">
+        {{ann['body']}}
+    </div>
+    <script src={{url_for('static',filename='assets/index.js')}}></script>
+
+</body>
+</html>

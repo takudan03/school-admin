@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{cat}} NOT FOUND.</h1>
+    <br>
+    <p>What you were looking for is just not there.
+    <br>
+    <p><a href="{{ url_for('dashboard') }}"><b><u>Go back to Dashboard...</u><b></b></a>
+
+{% endblock %}

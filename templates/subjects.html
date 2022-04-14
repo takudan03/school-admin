@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <script>
+        function detectChange(selectedSubjectCategory) {
+            console.log(selectedSubjectCategory.value);
+            if (selectedSubjectCategory.value == "past"){
+                console.log("past is selected");
+                location.href="{{url_for('subjects', category='past')}}" ;
+            } else {
+                console.log("current is selected");
+
+              location.replace("{{url_for('subjects', category='current')}}");
+            }
+        }
+    </script>
+
+  <table id="subjects">
+      {{cat}}
+      <select name="subject_cat" id="subject_cat" onchange="detectChange(this)" >
+          {% if cat == "past" %}
+            <option value="current">Current Subjects</option>
+            <option value="past" selected>Past Subjects</option>
+          {% else %}
+            <option value="current" selected>Current Subjects</option>
+            <option value="past">Past Subjects</option>
+          {% endif %}
+      </select>
+    <h2 class="table-header">Subjects ({{student_count}})</h2>
+
+      <tr>
+          <th width="5%"> </th>
+          <th width="65%">Course Name</th>
+          <th width="30%">Instructor</th>
+      </tr>
+
+    {% for subject in subjects %}
+    <tr>
+            <td class="tbl id" width="5%">
+                <span> - </span>
+            </td>
+            <td class="tbl name" width="65%">
+                <a href="{{url_for('view_subject',subject_id=subject)}}">{{subject}}</a>
+            </td>
+            <td class="tbl options" width="30%">
+                {{"Instructor"}}
+            </td>
+        </tr>
+    {% endfor %}
+  </table>
+    <br>
+  <a href={{url_for('addstudent')}} class="add-button">Add New Student</a>
+
+{% endblock %}

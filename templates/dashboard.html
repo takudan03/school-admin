@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <section class="grid">
+    <article>
+      <a href={{url_for('subjects')}} class="tile">
+          <span>Subjects</span>
+      </a>
+    </article>
+
+    <article>
+      <a href={{url_for('students')}} class="tile">
+          <span>Students</span>
+      </a>
+    </article>
+
+    <article>
+      <a href={{url_for('teachers')}} class="tile">
+          <span>Teachers</span>
+      </a>
+    </article>
+
+    <article>
+      <a href="{{url_for('view_announcements')}}" class="tile">
+          <span>Announcements</span>
+      </a>
+    </article>
+  </section>
+  <footer class="page-footer">
+  </footer>
+{% endblock %}
