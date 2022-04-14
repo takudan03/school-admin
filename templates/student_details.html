@@ -1,19 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <h1>Hello</h1>
+    <h1>Profile</h1>
     <form action="">
-        Student ID:     <input type="text" value={{student['_id']}} readonly><br>
+        Student ID:     <input type="text" value={{student['_id']}} readonly> <br>
         First Name:   <input type="text" value={{student['firstname']}} readonly><br>
         Last Name:    <input type="text" value={{student['lastname']}} readonly><br>
-        Gender:      <input type="text" value="xxxx" readonly><br>
-        Date Of Birth:  <input type="text" value="xxxx" readonly><br>
-        Faculty:      <input type="text" value="xxxx" readonly><br>
-        Course Level:    <input type="text" value="xxxx" readonly><br>
-        Course Name:      <input type="text" value="xxxx" readonly><br>
-        Residential Address,     <input type="text" value="xxxx" readonly><br>
-        Email Address:   <input type="text" value="xxxx" readonly><br>
-        Phone Number:   <input type="text" value="xxxx" readonly><br>
+        Gender:      <input type="text" value="{{student['gender']}}" readonly><br>
+        Date Of Birth:  <input type="text" value="{{student['dob']|format_datetime('date')}}" readonly><br>
+        Faculty:      <input type="text" value="{{student['faculty']}}" readonly><br>
+        Course Level:    <input type="text" value="{{student['major_level']}}" readonly><br>
+        Course Name:      <input type="text" value="{{student['major']}}" readonly><br>
+        Residential Address,     <input type="text" value="{{student['residence_address']}}" readonly><br>
+        Email Address:   <input type="text" value="{{student['email']}}" readonly><br>
+        Phone Number:   <input type="text" value="{{student['phone_number']}}" readonly><br>
     </form>
 
 {% endblock %}

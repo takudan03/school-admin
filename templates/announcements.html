@@ -3,7 +3,7 @@
 {% block content%}
 
 
-      <table id="announcements">
+      <table id="announcements" class="sortable">
         <h2 class="table-header">Announcements</h2>
           <tr>
               <th width="20%">Date</th>
@@ -14,7 +14,7 @@
         {% for announcement in announcements %}
         <tr>
 <!--            TODO parse date to human readable format-->
-                <td class="tbl date" width="20%">{{announcement['date']}}</td>
+                <td class="tbl date" width="20%" sorttable_customkey="{{announcement['date']}}">{{announcement['date']|format_datetime('datetime')}}</td>
                 <td class="tbl title" width="50%">
                     <a onclick="popUpWindow('{{url_for('view_announcement', announcement_id=announcement['_id'])}}','Example','700','600');" href="javascript:void(0);">{{announcement['title']}}</a>
                 </td>

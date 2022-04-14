@@ -7,7 +7,7 @@
 <body>
     <div class="announcement-header">
         From: <b>{{ann['sender'] }}</b>
-        Date: <b>{{parsed_date}} </b> <br>
+        Date: <b>{{ann['date']|format_datetime('datetime')}} </b> <br>
         Title: <b>{{ann['title']}} </b>
     </div>
 
@@ -15,6 +15,6 @@
         {{ann['body']}}
     </div>
     <script src={{url_for('static',filename='assets/index.js')}}></script>
-
+<!--TODO: MAKE CSS TO STYLE ANOUNCEMENT PAGE-->
 </body>
 </html>

@@ -29,6 +29,8 @@ student_id=0
 login_manager=LoginManager(app)
 dbuser= db.users.find_one()
 users=db.users.find()
+
+
 class User(UserMixin):
     def __init__(self, id, email, pw):
         self.id=id
@@ -146,36 +148,37 @@ def addstudent():
         flash("Student Added!", "success")
         return redirect('/')
 
-    return render_template('add_student.html', t=title, role=role)
+    return render_template('add_student.html', t=title, user=current_user)
 
 @login_required
 @app.route("/students")
 def students():
     all_students = db.student_names.find()
     student_count=len(list(all_students))
-    return render_template('students.html', students=all_students, student_count=student_count, t=title, role=role)
+    return render_template('students.html', students=all_students, student_count=student_count, t=title, user=current_user)
 
 @login_required
 @app.route("/teachers")
 def teachers():
     # TODO Students and Teachers cannot edit teacher info. Only view it. Admins can edit teacher info.
     teachers = db.student_names.find()
-    return render_template('teachers.html', students=teachers, t=title, role=role)
+    return render_template('teachers.html', students=teachers, t=title, user=current_user)
 
 @login_required
 @app.route("/announcements")
 def view_announcements():
     announcements = db.announcements.find()
-    return render_template('announcements.html', announcements=announcements, t=title, role=role)
+
+    return render_template('announcements.html', announcements=announcements, t=title, user=current_user)
 
 @login_required
 @app.route("/student-info/<student_id>")
 def view_student(student_id):
     student=db.student_names.find_one({'_id': student_id})
     if student != None:
-        return render_template('student_details.html', student=student, t=title, h=heading)
+        return render_template('student_details.html', student=student, t=title, user=current_user)
     else:
-        return render_template('404.html', t=title, role=role)
+        return url_for('page_not_found', category='Student', t=title, user=current_user)
 
 # TODO: change route to announcements/view_announcements/<id>
 @login_required
@@ -184,10 +187,9 @@ def view_announcement(announcement_id):
     ann = db.announcements.find_one({'_id': announcement_id})
 
     if ann != None:
-        parsed_date=datetime.strptime(ann['date'], '%d%m%Y%H%M').strftime('%d/%m/%Y %I:%M %p')
-        return render_template('view_announcement.html', ann=ann, parsed_date=parsed_date, t=ann['title']+" - From: " + ann['sender'])
+        return render_template('view_announcement.html', ann=ann, t=ann['title']+" - From: " + ann['sender'])
     else:
-        return render_template('404.html', t=title, role=role)
+        return render_template('404.html', t=title, role=role, user=current_user)
 
 @login_required
 @app.route("/subjects/view-subject/<subject_id>")
@@ -195,19 +197,36 @@ def view_subject(subject_id):
     subject = db.courses.find_one({'_id': subject_id})
 
     if subject != None:
-        return render_template('view_subject.html', subject=subject, t='View Subject')
+        return render_template('view_subject.html', subject=subject, t='View Subject', user=current_user)
     else:
-        return render_template('404.html', t=title, role=role)
+        return render_template('404.html', t=title,user=current_user)
 
 @app.errorhandler(404)
 def page_not_found(e, category="Page"):
     # note that we set the 404 status explicitly
-    return render_template('404.html', cat=category.upper(), role=role), 404
+    return render_template('404.html', cat=category.upper(), user=current_user), 404
 
 @app.route("/layout")
 def layout():
     title="Example of a Template"
     return render_template('layout.html', t=title)
+
+@login_required
+@app.route("/profile")
+def profile():
+    student=db.students.find_one({'_id':current_user.id})
+    print(student)
+    return render_template('student_details.html', student=student, t="Profile", user=current_user)
+
+
+@app.template_filter()
+def format_datetime(value, format='date'):
+    if format == 'date':
+        formatted_date=datetime.strptime(value, "%d%m%Y").strftime("%d/%m/%Y")
+    elif format == 'datetime':
+        formatted_date=datetime.strptime(value, "%Y%m%d%H%M").strftime("%d/%m/%Y %I:%M %p")
+    return formatted_date
+
 
 if __name__ == "__main__":
     app.run()

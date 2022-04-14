@@ -32,15 +32,7 @@
   <symbol id="down" viewBox="0 0 16 16">
     <polygon points="3.81 4.38 8 8.57 12.19 4.38 13.71 5.91 8 11.62 2.29 5.91 3.81 4.38" />
   </symbol>
-  <symbol id="users" viewBox="0 0 16 16">
-    <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM8,15a7,7,0,0,1-5.19-2.32,2.71,2.71,0,0,1,1.7-1,13.11,13.11,0,0,0,1.29-.28,2.32,2.32,0,0,0,.94-.34,1.17,1.17,0,0,0-.27-.7h0A3.61,3.61,0,0,1,5.15,7.49,3.18,3.18,0,0,1,8,4.07a3.18,3.18,0,0,1,2.86,3.42,3.6,3.6,0,0,1-1.32,2.88h0a1.13,1.13,0,0,0-.27.69,2.68,2.68,0,0,0,.93.31,10.81,10.81,0,0,0,1.28.23,2.63,2.63,0,0,1,1.78,1A7,7,0,0,1,8,15Z" />
-  </symbol>
-  <symbol id="collection" viewBox="0 0 16 16">
-    <rect width="7" height="7" />
-    <rect y="9" width="7" height="7" />
-    <rect x="9" width="7" height="7" />
-    <rect x="9" y="9" width="7" height="7" />
-  </symbol>
+
   <symbol id="charts" viewBox="0 0 16 16">
     <polygon points="0.64 7.38 -0.02 6.63 2.55 4.38 4.57 5.93 9.25 0.78 12.97 4.37 15.37 2.31 16.02 3.07 12.94 5.72 9.29 2.21 4.69 7.29 2.59 5.67 0.64 7.38" />
     <rect y="9" width="2" height="7" />
@@ -48,12 +40,7 @@
     <rect x="8" y="6" width="2" height="10" />
     <rect x="4" y="11" width="2" height="5" />
   </symbol>
-  <symbol id="comments" viewBox="0 0 16 16">
-    <path d="M0,16.13V2H15V13H5.24ZM1,3V14.37L5,12h9V3Z" />
-    <rect x="3" y="5" width="9" height="1" />
-    <rect x="3" y="7" width="7" height="1" />
-    <rect x="3" y="9" width="5" height="1" />
-  </symbol>
+
   <symbol id="pages" viewBox="0 0 16 16">
     <rect x="4" width="12" height="12" transform="translate(20 12) rotate(-180)" />
     <polygon points="2 14 2 2 0 2 0 14 0 16 2 16 14 16 14 14 2 14" />
@@ -107,43 +94,33 @@
       </li>
       <li>
         <a href={{url_for('students')}}>
-          <svg>
-            <use xlink:href="#pages"></use>
-          </svg>
+          <img class="svg" src="{{url_for('static', filename='images/students.svg')}}">
           <span>Students</span>
         </a>
       </li>
       <li>
         <a href={{url_for('teachers')}}>
-          <svg>
-            <use xlink:href="#users"></use>
-          </svg>
+          <img class="svg" src="{{url_for('static', filename='images/teachers.svg')}}">
           <span>Teachers</span>
         </a>
       </li>
       <li>
         <a href={{url_for('subjects')}}>
-          <svg>
-            <use xlink:href="#trends"></use>
-          </svg>
+          <img class="svg" src="{{url_for('static', filename='images/subjects.svg')}}">
           <span>Subjects</span>
         </a>
       </li>
       <li>
         <a href={{url_for('view_announcements')}}>
-          <svg>
-            <use xlink:href="#collection"></use>
-          </svg>
+          <img class="svg" src="{{url_for('static', filename='images/announcements.svg')}}">
           <span>Announcements</span>
         </a>
       </li>
 
 
       <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#comments"></use>
-          </svg>
+        <a href="{{url_for('profile')}}">
+          <img class="svg" src="{{url_for('static', filename='images/profile.svg')}}">
           <span>Profile</span>
         </a>
       </li>
@@ -166,9 +143,7 @@
 
       <li>
         <a href="#0">
-          <svg>
-            <use xlink:href="#charts"></use>
-          </svg>
+          <img class="svg" src="{{url_for('static', filename='images/chart.svg')}}">
 <!--          TODO: insert number of logged in users-->
           <span>Users Logged in: </span>
         </a>
@@ -201,6 +176,7 @@
 </div>
 
 <script src="{{ url_for('static',filename='assets/index.js')}}"></script>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
 </body>
 </html>

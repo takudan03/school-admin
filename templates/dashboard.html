@@ -4,24 +4,30 @@
   <section class="grid">
     <article>
       <a href={{url_for('subjects')}} class="tile">
+        <img class="tile-bg" src="{{url_for('static', filename='images/subjects.svg')}}">
           <span>Subjects</span>
       </a>
     </article>
 
     <article>
       <a href={{url_for('students')}} class="tile">
+        <img class="tile-bg" src="{{url_for('static', filename='images/students.svg')}}">
           <span>Students</span>
       </a>
     </article>
 
     <article>
       <a href={{url_for('teachers')}} class="tile">
+                <img class="tile-bg" src="{{url_for('static', filename='images/teachers.svg')}}">
+
           <span>Teachers</span>
       </a>
     </article>
 
     <article>
       <a href="{{url_for('view_announcements')}}" class="tile">
+        <img class="tile-bg" src="{{url_for('static', filename='images/announcements.svg')}}">
+
           <span>Announcements</span>
       </a>
     </article>
