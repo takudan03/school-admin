@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <section class="search-and-user">
+    <form>
+      <input type="search" placeholder="Search...">
+      <button type="submit" aria-label="submit form">
+        <img src="{{url_for('static', filename='images/search.svg')}}">
+      </button>
+    </form>
+  </section>
+
+  <table id="students" class="sortable">
+      <h2 class="table-header"> Teachers ({{student_count}}) </h2>
+      <tr>
+          <th width="20%">Faculty</th>
+          <th width="70%">Full Name</th>
+          <th width="10%">Options</th>
+      </tr>
+
+    {% for teacher in teachers %}
+        <tr>
+            <td class="tbl id" width="20%">{{ teacher['faculty'] }}</td>
+            <td class="tbl name" width="70%">{{teacher['firstname'] + " " + teacher['lastname']}}</td>
+            <td class="tbl options" width="10%">
+                <a href="{{url_for('view_student',student_id=teacher['_id'])}}">view</a>
+                <a href="#">edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+  </table>
+    <br>
+    {% if user.role == "Administrator" %}
+        <a href="{{url_for('addteacher')}}" class="add-button">Add New Teacher</a>
+    {% endif %}
+{% endblock %}

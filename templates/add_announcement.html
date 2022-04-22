@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+     <h2 class="table-header">New Announcement</h2>
+ <form method="POST">
+    Title:
+     <input type="text" name="title" required> <br>
+    Recepients:
+     <select name="announcements_recepients" required >
+    <option value="All">All</option>
+    <option value="Students" >Students</option>
+    <option value="Teachers" >Teachers</option>
+    </select>
+     <br>
+     Body:
+     <textarea name="body" rows="2" cols="25" id="body" style="height:100px" required> </textarea> <br>
+
+     <input type="submit" id="submit" class="page-button">
+    </form>
+
+{% endblock %}

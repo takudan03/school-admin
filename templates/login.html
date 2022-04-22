@@ -9,13 +9,13 @@
 <body>
 <div class="page-container">
     <form method="post" action="{{url_for('login')}}">
-        <div class="imgcontainer">
-          <img src="{{ url_for('static',filename='images/logo.png')}}" alt="Avatar" class="avatar">
+        <div class="logo" style="padding:10px">
+            <img width="140" height="49" src="/static/images/logo4.svg" class="icon">
         </div>
 
         <div class="container">
-          <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" required>
+          <label for="id"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" name="id" required>
             <br>
 
           <label for="psw"><b>Password</b></label>
@@ -23,12 +23,6 @@
               <br>
         {% for message in get_flashed_messages() %}
           <div class="alert alert-warning">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert">
-                x
-              </button>
             {{ message }}
           </div>
         {% endfor %}

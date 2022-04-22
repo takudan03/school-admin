@@ -2,6 +2,33 @@
 
 {% block content %}
 
-    <h2>This subject</h2>
+
+    <h1>{{subject['subject_name']}}</h1>
+    <form method="POST">
+        Course ID:     <input type="text" value={{subject['_id']}} readonly> <br>
+        Course Instructor:   <input type="text" value="{{subject['course_teacher']}}" readonly><br>
+        Class location :    <input type="text" value="{{subject['location']}}" readonly><br>
+        Maximum Headcount:      <input type="text" value="{{subject['max_headcount']}}" readonly><br>
+        Current Headcount:  <input type="text" value="{{subject['current_headcount']}}" readonly><br>
+        Student Level:      <input type="text" value="{{subject['student_level']}}" readonly><br>
+        Subject Description:      <label >{{subject['subject_description']}}</label> <br>
+
+        Enrolled Students:
+        <ul>
+            {% for student in subject['enrolled_students'] %}
+                <li>- {{student|get_student_name}}</li>
+            {% endfor %}
+        </ul>
+
+        {% if user.role == "Student" %}
+            {% if user.id in subject['enrolled_students'] %}
+            Currently Registered.<br><br>
+            <input type="submit" name="submit" value="Drop Subject" class="page-button">
+            {% else %}
+            <input type="submit" name="submit" value="Register for Subject"  class="page-button">
+            {% endif %}
+        {% endif %}
+    </form>
+
 
 {% endblock %}

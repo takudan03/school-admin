@@ -119,8 +119,13 @@ body {
 }
 
 .page-header .logo {
-  display: block;
-  margin: 0 15px;
+  display: flex;
+  flex-direction:row;
+  margin: 0 20px;
+}
+
+.logo > .icon {
+    filter: invert(99%) sepia(1%) saturate(0%) hue-rotate(194deg) brightness(106%) contrast(100%)
 }
 
 .page-header .logo .svg {
@@ -344,6 +349,8 @@ body {
   .responsive-user-details{
     display:block;
     align:flex-end;
+    padding: 2px;
+    font-variant:small-caps;
   }
 
 
@@ -447,7 +454,7 @@ body {
     align:flex-end;
   }
 
-  .admin-menu.menu-heading..user-details{
+  .admin-menu.menu-heading .user-details{
     display:none
   }
 }
@@ -590,6 +597,10 @@ body {
   fill: var(--black);
 }
 
+.light-mode .logo .icon {
+    filter: invert(0%) sepia(87%) saturate(7%) hue-rotate(235deg) brightness(109%) contrast(101%);
+}
+
 .light-mode .switch [type="checkbox"]:focus + label span:first-child {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
 }
@@ -601,22 +612,11 @@ body {
 }
 
 
-/* FOOTER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.page-footer {
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
 
-.page-footer a {
-  margin-left: 4px;
-}
+/* TABLES
+---------------------------------------------------*/
 
-
-table, tr, td{
+table, tr, td, th{
   border: 2px solid rgb(233, 233, 233) ;
   border-collapse: collapse;
   padding: 2px;
@@ -640,41 +640,25 @@ tr{
   padding: 2px;
 }
 
-.add-button{
-    position:absolute;
-    /*bottom:0;*/
-}
-
 
 .tile {
-  width:100%;
-  height:100%
-  display: inline-block;
-  margin: 3px;
-  padding: 5px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
+    height:100%;
+    width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: background-position 0.1s ease 0s;
-  vertical-align: center;
 }
 
 
 .tile > span {
-    height: 100%
-    width:100%
-  bottom: 5px;
-  font-size: 15px;
   font-weight: bold;
-  left: 0;
-  margin: 0 auto;
-  overflow: hidden;
   padding: 4px;
-  position: absolute;
-  right: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    justify-content: center;
+        font-size: 20px;
+
 }
+
 
 
 .tile:hover {
@@ -698,4 +682,18 @@ tr{
 
   padding: 5px;
   margin: 2px;
+}
+
+.page-button{
+    margin: 5px;
+    padding: 2px;
+    color: white;
+    background: #242e42;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

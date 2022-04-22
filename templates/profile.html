@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>Profile</h1>
+    <h2>Personal Details</h2>
+
+    {% if user.role == "Student" %}
+
+    <form action="">
+        Student ID:     <input type="text" value={{this_user['_id']}} readonly> <br>
+        First Name:   <input type="text" value={{this_user['firstname']}} readonly><br>
+        Last Name:    <input type="text" value={{this_user['lastname']}} readonly><br>
+        Gender:      <input type="text" value="{{this_user['gender']}}" readonly><br>
+        Date Of Birth:  <input type="text" value="{{this_user['dob']|format_datetime('date')}}" readonly><br>
+        Faculty:      <input type="text" value="{{this_user['faculty']}}" readonly><br>
+        Course Level:    <input type="text" value="{{this_user['major_level']}}" readonly><br>
+        Course Name:      <input type="text" value="{{this_user['major']}}" readonly><br>
+        Residential Address:     <input type="text" value="{{this_user['residence_address']}}" readonly><br>
+        Email Address:   <input type="text" value="{{this_user['email']}}" readonly><br>
+        Phone Number:   <input type="text" value="{{this_user['phone_number']}}" readonly><br>
+    </form>
+
+    {% elif user.role=="Teacher" %}
+    <form action="">
+        Teacher ID:     <input type="text" value={{this_user['_id']}} readonly> <br>
+        First Name:   <input type="text" value={{this_user['firstname']}} readonly><br>
+        Last Name:    <input type="text" value={{this_user['lastname']}} readonly><br>
+        Gender:      <input type="text" value="{{this_user['gender']}}" readonly><br>
+        Date Of Birth:  <input type="text" value="{{this_user['dob']|format_datetime('date')}}" readonly><br>
+        Faculty:      <input type="text" value="{{this_user['faculty']}}" readonly><br>
+        Qualification:    <input type="text" value="{{this_user['qualification']}}" readonly><br>
+        Residential Address:     <input type="text" value="{{this_user['residence_address']}}" readonly><br>
+        Office Hours:   <input type="text" value="{{this_user['office_hours']}}" readonly><br>
+        Email Address:   <input type="text" value="{{this_user['email']}}" readonly><br>
+        Phone Number:   <input type="text" value="{{this_user['phone_number']}}" readonly><br>
+    </form>
+
+    {% elif user.role=="Administrator" %}
+    <form action="">
+        Administrator ID:     <input type="text" value={{this_user['_id']}} readonly> <br>
+        First Name:   <input type="text" value={{this_user['firstname']}} readonly><br>
+        Last Name:    <input type="text" value={{this_user['lastname']}} readonly><br>
+        Email Address:   <input type="text" value="{{this_user['email']}}" readonly><br>
+        Phone Number:   <input type="text" value="{{this_user['phone_number']}}" readonly><br>
+    </form>
+
+    {% endif %}
+
+
+{% endblock %}

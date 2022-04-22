@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{t}}</title>
-</head>
-<body>
+{% extends "layout.html" %}
+
+{% block content %}
     <div class="announcement-header">
-        From: <b>{{ann['sender'] }}</b>
+        From: <b>{{ann['sender'] }}</b> <br>
         Date: <b>{{ann['date']|format_datetime('datetime')}} </b> <br>
         Title: <b>{{ann['title']}} </b>
     </div>
@@ -14,7 +10,6 @@
     <div class="announcement-body">
         {{ann['body']}}
     </div>
-    <script src={{url_for('static',filename='assets/index.js')}}></script>
-<!--TODO: MAKE CSS TO STYLE ANOUNCEMENT PAGE-->
-</body>
-</html>
+
+
+{% endblock %}

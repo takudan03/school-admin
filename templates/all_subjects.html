@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <table id="subjects" style="width:100%">
+
+    <h2 class="table-header">All Subjects ({{subjects|count_results}})</h2>
+
+      <tr>
+          <th width="5%">Course ID </th>
+          <th width="45%">Course Name</th>
+          <th width="20%">Headcount</th>
+          <th width="30%">Instructor</th>
+      </tr>
+
+    {% for subject in subjects %}
+    <tr>
+            <td class="tbl id" >
+                <span>{{subject['_id']}} </span>
+            </td>
+            <td class="tbl name" >
+                <a href="{{url_for('view_subject',subject_id=subject['_id'])}}"><u><b>{{subject['subject_name']}}</b></u></a>
+            </td>
+            <td class="tbl headcount">
+                {{subject['current_headcount']}} / {{subject['max_headcount']}}
+            </td>
+            <td class="tbl options">
+                {{subject['subject_teacher']}}
+            </td>
+        </tr>
+    {% endfor %}
+  </table>
+    <br>
+    {% if user.role == "Administrator" %}
+        <a href="{{url_for('addsubject')}}" class="add-button">Add New Subject</a>
+    {% endif %}
+
+{% endblock %}
