@@ -10,6 +10,18 @@
       </button>
     </form>
   </section>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
   <table id="students" class="sortable">
       <h2 class="table-header"> Students ({{student_count}}) </h2>
@@ -27,7 +39,7 @@
             <td class="tbl faculty">{{student['faculty']}}</td>
             <td class="tbl options">
                 <a href="{{url_for('view_student',student_id=student['_id'])}}">view</a>
-                <a href="#">edit</a>
+                <a href="{{url_for('update_student',student_id=student['_id'])}}">edit</a>
             </td>
         </tr>
     {% endfor %}
@@ -35,7 +47,7 @@
     <br>
 
     {% if user.role == "Administrator" %}
-        <a href="{{url_for('addstudent')}}" class="add-button">Add New Student</a>
+        <a href="{{url_for('addstudent')}}" class="page-button">Add New Student</a>
     {% endif %}
 
 {% endblock %}

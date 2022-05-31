@@ -31,6 +31,10 @@
           <th width="10%">Course Id</th>
           <th width="60%">Course Name</th>
           <th width="30%">Instructor</th>
+          {% if cat == "past" %}
+          <th>Pass/Fail?</th>
+          <th>Grade Attained</th>
+          {% endif %}
       </tr>
 
     {% for subject in subjects %}
@@ -44,6 +48,20 @@
             <td class="tbl options">
                 {{subject['subject_teacher']}}
             </td>
+        {% if cat == "past" %}
+            {% for sj in subjects_codes %}
+                {% if sj['course_id'] == subject['_id'] %}
+                        <td style="text-align: center;">{% if sj['grade']==1 %}
+                            <img src="{{url_for('static', filename='images/no.png')}}" height="15px">
+                        {% else %}
+                            <img src="{{url_for('static', filename='images/yes.png')}}" height="15px">
+                        {% endif %}
+                        </td>
+                        <td style="text-align: center;">{{sj['grade']}}</td>
+                 {% endif %}
+            {% endfor %}
+
+          {% endif %}
         </tr>
     {% endfor %}
   </table>

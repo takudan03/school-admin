@@ -1,13 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content%}
-    <h1>Add A New Student</h1>
+    <h1>Update Student Details</h1>
     <form method="POST">
-        First Name:   <input type="text" name="firstname" required><br>
-        Last Name:    <input type="text" name="lastname" required><br>
+        First Name:   <input type="text" name="firstname" value="{{student['firstname']}}" required><br>
+        Last Name:    <input type="text" name="lastname" value="{{student['lastname']}}" required><br>
         Gender:      <select name="gender" required>
-            <option value="male">Male</option>
+        {% if student['gender'] == "male" %}
+            <option value="male" selected>Male</option>
             <option value="female">Female</option>
+        {% elif student['gender'] == "female" %}
+            <option value="male">Male</option>
+            <option value="female" selected>Female</option>
+        {% endif %}
          </select><br>
         Date Of Birth:  <input type="date" name="dob" required><br>
         Faculty:      <select name="faculty" required>
@@ -27,11 +32,12 @@
             <option value="Computer Science Engineering">Computer Science Engineering</option>
             <option value="Business Informatics">Business Informatics</option>
          </select><br>
-        Residential Address:     <input type="text" name="residence_address" required><br>
-        Email Address:   <input type="email" name="email" required><br>
-        Phone Number:   <input type="tel" name="phone_number" required><br>
+        Residential Address:     <input type="text" name="residence_address" value="{{student['residence_address']}}" required><br>
+        Email Address:   <input type="email" name="email" value="{{student['email']}}" required><br>
+        Phone Number:   <input type="tel" name="phone_number" value="{{student['phone_number']}}" required><br>
 
-        <input type="submit" class="page-button" value="Add New Student">
+        <input type="submit" name="submit" class="page-button" value="Update">
+        <input type="submit" name="submit" class="page-button" value="Delete Student" style="{background:red;">
 
     </form>
 

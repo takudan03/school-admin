@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h1>Grade Student</h1>
+
+    <h2>{{subject['subject_name']}}</h2>
+
+    <h3>Assign grade for the student {{student['firstname']}} {{student['lastname']}}</h3>
+    <form method="POST">
+        <br><u>Grading System:</u>
+        <ul>
+            <li><i>5 - <b>Excellent</b></i></li>
+            <li><i>4 - <b>Good</b></i></li>
+            <li><i>3 - <b>Satisfactory</b></i></li>
+            <li><i>2 - <b>Pass</b></i></li>
+            <li><i>1 - <b>Fail</b></i></li>
+        </ul>
+
+            <br><select name="grade">
+        {% for i in range(5) %}
+            <option value="{{i+1}}">{{i+1}}</option>
+        {% endfor %}
+         </select>
+        <input type="submit" class="page-button">
+    </form>
+
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+    <h1>Add New Subject</h1>
+    <form method="POST">
+        Course Name:     <input type="text" name="subject_name" size="30" required> <br>
+        Course Instructor:   <select name="subject_teacher" required>
+        {% for teacher in teachers %}
+         <option value="{{teacher['firstname']}} {{teacher['lastname']}}"> {{teacher['firstname']}} {{teacher['lastname']}} </option>
+        {% endfor %}
+         </select>
+        <br>
+        Class location :    <input type="text" name="location" required><br>
+        Maximum Headcount:      <input type="number" name="max_headcount" required><br>
+        Student Level:      <select name="student_level" required>
+            <option value="All">All</option>
+            <option value="Bachelor">Bachelor</option>
+            <option value="Masters">Masters</option>
+            <option value="Doctorate">Doctorate</option>
+            <option value="Phd">Phd</option>
+             </select>
+        <br>
+        Subject Description: <textarea name="subject_description" rows="2" cols="25" id="body" style="height:100px" required> </textarea><br>
+
+        <input type="submit" name="submit" value="Add Subject" class="page-button">
+
+    </form>
+
+
+{% endblock %}
